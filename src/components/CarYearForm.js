@@ -65,7 +65,7 @@ class CarYearForm extends PureComponent {
                                 className={classes.textField}
                                 onChange={handleChange('carYear')}
                                 margin="normal"
-                                defaultValue={values.carYear}
+                                value={values.carYear}
                             >
                                 {years.map(option => (
                                     <MenuItem key={option.value} value={option.value}>
