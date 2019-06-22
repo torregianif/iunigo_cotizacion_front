@@ -80,7 +80,6 @@ class CarYearBrandModelForm extends PureComponent {
           .then((response) => {
             return response.json();
           }).then(data => {
-            //console.log(data);
             this.setState({
               models: data
             });
