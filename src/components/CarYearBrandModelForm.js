@@ -1,262 +1,285 @@
 import React, { PureComponent } from 'react';
-import { Container, TextField, Button, Grid } from '@material-ui/core';
+import { Container, Button, Grid, FormControl, Select, InputLabel, TextField } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import endpoint from '../constants/endpoint';
 
 const useStyles = makeStyles(theme => ({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 500,
-    },
-    dense: {
-      marginTop: 19,
-    },
-    menu: {
-      width: 200,
-    },
-  }));
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 500,
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+  },
+}));
 
 class CarYearBrandModelForm extends PureComponent {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       miStep: 1,
-      
+      brands: [],
+      models: [],
+      flag:false
     }
 
     this.changeMiStep = this.changeMiStep.bind(this);
   }
 
   continue = e => {
-      e.preventDefault();
-      this.props.nextStep();
+    e.preventDefault();
+    this.props.nextStep();
   }
 
   changeMiStep = (input, handleChange) => e => {
-    if([input] == "carYear"){
-      this.setState({
-        miStep: 2,
-      })
-      let flag= false;    
-    if(e.target.value===20190){
-      flag=true;
-    }
-    
-    const endpoint_back = `${endpoint.url}/brands?year=${e.target.value}&0km=${flag}`;
-          fetch(endpoint_back)
-          .then((response) => {
-                console.log(response)
-                console.log("status; "+ response.status)
-                if(response.status === 200){
-                  alert("Se ha creado correctamente el usuario.")
-                }
-                else{
-                  alert("No se ha podido crear el usuario.")
-                }        
-              }
-          );  
-    }else{
-      if([input] == "carBrand"){
+    if ([input] == "carYear") {
+      let flag = false;
+      let newYear = e.target.value
+      if (e.target.value === 20190) {
+        flag = true;
+        newYear = 2019
+      }
+              this.setState({
+                miStep: 2,
+                carYear: newYear,
+                flag
+              })
+
+      const endpoint_back = `${endpoint.url}/brands?year=${e.target.value}&0km=${flag}`;
+      fetch(endpoint_back)
+        .then((response) => {
+          return response.json();
+        }).then(data => {
+          this.setState({
+            brands: data
+          });
+        })
+    } else {
+      if ([input] == "carBrand") {
+
         this.setState({
           miStep: 3,
-        })  
+        })
+        
+        const endpoint_back = `${endpoint.url}/models?brand=${e.target.value}&year=${this.state.carYear}&0km=${this.state.flag}`;
+        fetch(endpoint_back)
+          .then((response) => {
+            return response.json();
+          }).then(data => {
+            //console.log(data);
+            this.setState({
+              models: data
+            });
+          })
       }
     }
     handleChange(input, e.target.value)
   }
-  
+
 
 
   render() {
 
     const { values, handleChange } = this.props;
     const { miStep } = this.state;
+
+
     const classes = useStyles;
     const years = [
-        {
-          value: '20190',
-          label: '2019 0Km',
-        },
-        {
-          value: '2019',
-          label: '2019',
-        },
-        {
-          value: '2018',
-          label: '2018',
-        },
-        {
-          value: '2017',
-          label: '2017',
-        },
+      {
+        value: '20190',
+        label: '2019 0Km',
+      },
+      {
+        value: '2019',
+        label: '2019',
+      },
+      {
+        value: '2018',
+        label: '2018',
+      },
+      {
+        value: '2017',
+        label: '2017',
+      },
     ];
 
-    switch(miStep){
+    switch (miStep) {
       case 1:
         return (
-            <Container maxWidth="sm" className={classes.container}>
-                <form className={classes.form} noValidate>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                id="standard-select-currency"
-                                select
-                                label="Año"
-                                helperText="Selecciona el año del vehículo"
-                                className={classes.textField}
-                                onChange={this.changeMiStep("carYear", handleChange)}
-                                margin="normal"
-                                value={values.carYear}
-                            >
-                                {years.map(option => (
-                                    <MenuItem key={option.value} value={option.value}>
-                                        {option.label}
-                                    </MenuItem>
-                                ))}
-                            </TextField>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Button onClick={this.continue}>
-                                Continue
+          <Container maxWidth="sm" className={classes.container}>
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField 
+                    style={{width:"100%"}}
+                    id="standard-select-currency"
+                    select
+                    label="Año"
+                    helperText="Selecciona el año del vehículo"
+                    className={classes.textField}
+                    onChange={this.changeMiStep("carYear", handleChange)}
+                    margin="normal"
+                    value={values.carYear}
+                  >
+                    {years.map(option => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={this.continue}>
+                    Continue
                             </Button>
-                        </Grid>
-                    </Grid>
-                </form>
-                <div></div>
-            </Container>
-            )
-            case 2:
-            return (
-              <Container maxWidth="sm" className={classes.container}>
-                  <form className={classes.form} noValidate>
-                      <Grid container spacing={2}>
-                          <Grid item xs={12}>
-                              <TextField
-                                  id="standard-select-currency"
-                                  select
-                                  label="Año"
-                                  helperText="Selecciona el año del vehículo"
-                                  className={classes.textField}
-                                  onChange={this.changeMiStep("carYear", handleChange)}
-                                  margin="normal"
-                                  value={values.carYear}
-                              >
-                                  {years.map(option => (
-                                      <MenuItem key={option.value} value={option.value}>
-                                          {option.label}
-                                      </MenuItem>
-                                  ))}
-                              </TextField>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <TextField
-                                  id="standard-select-currency"
-                                  select
-                                  label="Marca"
-                                  helperText="Selecciona la Marca del vehículo"
-                                  className={classes.textField}
-                                  onChange={this.changeMiStep("carBrand", handleChange)}
-                                  margin="normal"
-                                  value={values.carBrand}
-                              >
-                                  {years.map(option => (
-                                      <MenuItem key={option.value} value={option.value}>
-                                          {option.label}
-                                      </MenuItem>
-                                  ))}
-                              </TextField>
-                          </Grid>
-                          
-                          <Grid item xs={12}>
-                              <Button onClick={this.continue}>
-                                  Continue
-                              </Button>
-                          </Grid>
-                      </Grid>
-                  </form>
-                  <div></div>
-              </Container>
-            )
-            case 3:
-            return (
-              <Container maxWidth="sm" className={classes.container}>
-                  <form className={classes.form} noValidate>
-                      <Grid container spacing={2}>
-                          <Grid item xs={12}>
-                              <TextField
-                                  id="standard-select-currency"
-                                  select
-                                  label="Año"
-                                  helperText="Selecciona el año del vehículo"
-                                  className={classes.textField}
-                                  onChange={this.changeMiStep("carYear", handleChange)}
-                                  margin="normal"
-                                  value={values.carYear}
-                              >
-                                  {years.map(option => (
-                                      <MenuItem key={option.value} value={option.value}>
-                                          {option.label}
-                                      </MenuItem>
-                                  ))}
-                              </TextField>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <TextField
-                                  id="standard-select-currency"
-                                  select
-                                  label="Marca"
-                                  helperText="Selecciona la Marca del vehículo"
-                                  className={classes.textField}
-                                  onChange={this.changeMiStep("carBrand", handleChange)}
-                                  margin="normal"
-                                  value={values.carBrand}
-                              >
-                                  {years.map(option => (
-                                      <MenuItem key={option.value} value={option.value}>
-                                          {option.label}
-                                      </MenuItem>
-                                  ))}
-                              </TextField>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <TextField
-                                  id="standard-select-currency"
-                                  select
-                                  label="Modelo"
-                                  helperText="Selecciona el Modelo del vehículo"
-                                  className={classes.textField}
-                                  onChange={this.changeMiStep("carModel", handleChange)}
-                                  margin="normal"
-                                  value={values.carModel}
-                                >
-                                  {years.map(option => (
-                                      <MenuItem key={option.value} value={option.value}>
-                                          {option.label}
-                                      </MenuItem>
-                                  ))}
-                              </TextField>
-                          </Grid>
-                          <Grid item xs={12}>
-                              <Button onClick={this.continue}>
-                                  Continue
-                              </Button>
-                          </Grid>
-                      </Grid>
-                  </form>
-                  <div></div>
-              </Container>
-              ) 
-        }
+                </Grid>
+              </Grid>
+            </form>
+            <div></div>
+          </Container>
+        )
+      case 2:
+        return (
+          <Container maxWidth="sm" className={classes.container}>
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    style={{width:"100%"}}
+                    id="standard-select-currency"
+                    select
+                    label="Año"
+                    helperText="Selecciona el año del vehículo"
+                    className={classes.textField}
+                    onChange={this.changeMiStep("carYear", handleChange)}
+                    margin="normal"
+                    value={values.carYear}
+                  >
+                    {years.map(option => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    style={{width:"100%"}}
+                    id="standard-select-currency"
+                    select
+                    label="Marca"
+                    helperText="Selecciona la Marca del vehículo"
+                    className={classes.textField}
+                    onChange={this.changeMiStep("carBrand", handleChange)}
+                    margin="normal"
+                    value={values.carBrand}
+                  >
+                    {this.state.brands.map(option => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
 
+                <Grid item xs={12}>
+                  <Button onClick={this.continue}>
+                    Continue
+                    </Button>
+                </Grid>
+              </Grid>
+            </form>
+            <div></div>
+          </Container>
+        )
+      case 3:
+        return (
+          <Container maxWidth="sm" className={classes.container}>
+            <form className={classes.form} noValidate>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    style={{width:"100%"}}
+                    id="standard-select-currency"
+                    select
+                    label="Año"
+                    helperText="Selecciona el año del vehículo"
+                    className={classes.textField}
+                    onChange={this.changeMiStep("carYear", handleChange)}
+                    margin="normal"
+                    value={values.carYear}
+                  >
+                    {years.map(option => (
+                      <MenuItem key={option.value} value={option.value}>
+                        {option.label}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    style={{width:"100%"}}
+                    id="standard-select-currency"
+                    select
+                    label="Marca"
+                    helperText="Selecciona la Marca del vehículo"
+                    className={classes.textField}
+                    onChange={this.changeMiStep("carBrand", handleChange)}
+                    margin="normal"
+                    value={values.carBrand}
+                  >
+                    {this.state.brands.map(option => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
 
+                <Grid item xs={12}>
+                  <TextField
+                    style={{width:"100%"}}
+                    id="standard-select-currency"
+                    select
+                    label="Modelo"
+                    helperText="Selecciona el Modelo del vehículo"
+                    className={classes.textField}
+                    onChange={this.changeMiStep("carModel", handleChange)}
+                    margin="normal"
+                    value={values.carModel}
+                  >
+                    {this.state.models.map(option => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={this.continue}>
+                    Continue
+                              </Button>
+                </Grid>
+              </Grid>
+            </form>
+            <div></div>
+          </Container>
+        )
     }
+
+
+  }
 }
 
 
