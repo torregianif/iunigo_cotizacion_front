@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import CarYearForm from './CarYearForm';
+import UserNameForm from './UserNameForm';
+import PricesForm from './PricesForm';
 
-export class PrincipalForm extends Component {
+class PrincipalForm extends Component {
 
     state = {
-        step: 1,
+        step: 3,
         carYear: null
     }
 
@@ -40,23 +42,24 @@ export class PrincipalForm extends Component {
             case 1:
                 return(
                     <div>
-                         <CarYearForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                         <UserNameForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
                     </div>
                 )
             case 2:
                 return(
                     <div>
-                        CASE 2
+                        <CarYearForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
                     </div>
                 )
             case 3:
                 return(
                     <div>
-                        CASE 3
+                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
                     </div>
                 )
         }
+
     }
 }
 
-export default PrincipalForm
+export default PrincipalForm;
