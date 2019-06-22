@@ -1,23 +1,28 @@
 import React, { Component } from 'react';
-import CarYearForm from './CarYearForm';
+import CarYearBrandModelForm from './CarYearBrandModelForm';
 import UserNameForm from './UserNameForm';
 import PricesForm from './PricesForm';
 import UserLocationForm from './UserLocationForm';
 import MailForm from './MailForm';
+import CardVersionForm from './CarVersionForm';
 
 class PrincipalForm extends Component {
 
     state = {
-        step: 1,
-        carYear: null
+        step: 2,
+        carYear: null,
+        carBrand: null,
+        carModel: null,
+        carGNC: "9",
+        carDoors: 0
     }
 
     // Go to next step
     nextStep = () => {
+        console.log(this.state)
         const { step } = this.state;
         this.setState({
             step: step + 1,
-            carYear: ''
         })
         console.log(this.state)
     }
@@ -31,17 +36,18 @@ class PrincipalForm extends Component {
     }
 
     // Handle fields Change
-    handleChange = input => e => {
+    handleChange = (input, value) => {
+        //debugger
         this.setState({
-            [input]: e.target.value
+            [input]: value
         })
     }
+    
 
     render() {
         const { step } = this.state;
-        const { carYear, name } = this.state;
-        const values = { carYear, name };
-        console.log(this.state.carYear);
+        const { carYear, carGNC, carDoors, carBrand, carModel, name } = this.state;
+        const values = { carYear, carGNC, carDoors, carBrand, carModel, name};
         switch (step) {
             case 1:
                 return (
@@ -49,18 +55,18 @@ class PrincipalForm extends Component {
                         <UserNameForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
-                
+
             case 2:
                 return (
                     <div>
-                        <CarYearForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
+                        <CarYearBrandModelForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
                     </div>
                 );
 
             case 3:
                 return (
                     <div>
-                        <PricesForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
+                        <CardVersionForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
