@@ -44,8 +44,8 @@ class CardVersionForm extends PureComponent {
 
 
     componentWillMount() {
-        const { carYear, carBrand, carModel } = this.props.values 
-        const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=false`;
+        const { carYear, carBrand, carModel, car0km } = this.props.values 
+        const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}`;
 
         console.log(endpoint_back);
         
@@ -125,8 +125,8 @@ class CardVersionForm extends PureComponent {
                                     <MenuItem value="9">
                                         <em>Seleccione una opcion</em>
                                     </MenuItem>
-                                    <MenuItem key="true" value='0'>No</MenuItem>
-                                    <MenuItem key="false" value='1'>Si</MenuItem>
+                                    <MenuItem key="0" value='0'>No</MenuItem>
+                                    <MenuItem key="1" value='1'>Si</MenuItem>
                                 </Select>
                                 <FormHelperText>Necesitamos este dato.</FormHelperText>
                             </FormControl>

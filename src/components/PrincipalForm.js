@@ -19,12 +19,10 @@ class PrincipalForm extends Component {
 
     // Go to next step
     nextStep = () => {
-        console.log(this.state)
         const { step } = this.state;
         this.setState({
             step: step + 1,
         })
-        console.log(this.state)
     }
 
     // Go to previous step
