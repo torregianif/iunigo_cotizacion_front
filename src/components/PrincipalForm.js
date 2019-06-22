@@ -35,14 +35,23 @@ class PrincipalForm extends Component {
         })
     }
 
+    // Handle fields Change from change
+    handleChange = input => e => {
+        //debugger
+        this.setState({
+            [input]: e.target.value
+        })
+    }
+
     // Handle fields Change
-    handleChange = (input, value) => {
+    handleChangeFromChild = (input, value) => {
         //debugger
         this.setState({
             [input]: value
         })
     }
     
+
 
     render() {
         const { step } = this.state;
@@ -59,7 +68,7 @@ class PrincipalForm extends Component {
             case 2:
                 return (
                     <div>
-                        <CarYearBrandModelForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                        <CarYearBrandModelForm nextStep={this.nextStep} handleChange={this.handleChangeFromChild} values={values}/>
                     </div>
                 );
 
