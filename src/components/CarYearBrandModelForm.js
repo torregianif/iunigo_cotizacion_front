@@ -40,6 +40,10 @@ class CarYearBrandModelForm extends PureComponent {
     e.preventDefault();
     this.props.nextStep();
   }
+  previous = e => {
+    e.preventDefault();
+    this.props.prevStep();
+  }
 
   changeMiStep = (input, handleChange) => e => {
     if ([input] == "carYear") {

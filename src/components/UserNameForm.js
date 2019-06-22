@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Container, TextField, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import logo from '../img/JonathanLeibiusky.jpg';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 
 const useStyles = makeStyles(theme => ({
@@ -41,6 +44,8 @@ export default class UserNameForm extends Component {
         return (
 
             <Container maxWidth="sm" className={classes.container}>
+
+          
               <Grid container justify="center" alignItems="center">
                  <img src={logo} alt="logo" style={{
                 margin:10,width:200,height: 200,borderRadius: 100,
@@ -89,15 +94,16 @@ export default class UserNameForm extends Component {
                        
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
+                            <Button variant="contained" color="primary" onClick={this.continue}>
                                 Continuar
                             </Button>
                         </Grid>
                     </Grid>
                 </form>
                 <div></div>
+           
             </Container>
-
+                  
         )
     }
 }
