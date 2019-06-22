@@ -38,25 +38,51 @@ class PrincipalForm extends Component {
         const { step } = this.state;
         const { carYear } = this.state;
         const values = { carYear };
-        switch(step){
+        switch (step) {
             case 1:
-                return(
+                return (
                     <div>
-                         <UserNameForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                        <UserNameForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
                     </div>
-                )
+                );
+                
             case 2:
-                return(
+                return (
                     <div>
-                        <CarYearForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                        <CarYearForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
                     </div>
-                )
+                );
+
             case 3:
-                return(
+                return (
                     <div>
-                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
                     </div>
-                )
+                );
+
+            case 4:
+                return (
+                    <div>
+                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                    </div>
+                );
+
+            case 5:
+                return (
+                    <div>
+                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                    </div>
+                );
+
+            case 6:
+                return (
+                    <div>
+                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                    </div>
+                );
+
+            default:
+                return
         }
 
     }
