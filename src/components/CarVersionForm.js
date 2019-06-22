@@ -3,6 +3,7 @@ import { Container, Button, Grid, FormControl, Select, InputLabel, FormHelperTex
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import endpoint from '../constants/endpoint';
+import logo from '../img/JonathanLeibiusky.jpg';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -26,8 +27,15 @@ class CardVersionForm extends PureComponent {
         if(this.props.values.carDoors >0 && this.props.values.carGNC < 9){
             this.props.nextStep();
         }
-        
     }
+    
+
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
+        }
+        
+    
 
     state = {
         puertas: [],
@@ -65,6 +73,15 @@ class CardVersionForm extends PureComponent {
 
         return (
             <Container maxWidth="sm" className={classes.container}>
+             <Grid container justify="center" alignItems="center">
+                 <img src={logo} alt="logo" style={{
+                margin:10,width:100,height: 100,borderRadius: 50,
+
+                 }}>
+
+                 </img>
+              </Grid>
+            <h3>Terminemos con los ultimos detalles del Auto</h3>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
@@ -114,8 +131,13 @@ class CardVersionForm extends PureComponent {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
-                                Continue
+                            <Button variant="contained" color="primary" onClick={this.continue}>
+                                Continuar
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button variant="contained" color="secondary" onClick={this.previous}>
+                                volver
                             </Button>
                         </Grid>
 

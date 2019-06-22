@@ -9,7 +9,7 @@ import CardVersionForm from './CarVersionForm';
 class PrincipalForm extends Component {
 
     state = {
-        step: 2,
+        step: 1,
         carYear: null,
         carBrand: null,
         carModel: null,
@@ -68,14 +68,14 @@ class PrincipalForm extends Component {
             case 2:
                 return (
                     <div>
-                        <CarYearBrandModelForm nextStep={this.nextStep} handleChange={this.handleChangeFromChild} values={values}/>
+                        <CarYearBrandModelForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChangeFromChild} values={values}/>
                     </div>
                 );
 
             case 3:
                 return (
                     <div>
-                        <CardVersionForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <CardVersionForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 

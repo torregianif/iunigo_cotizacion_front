@@ -35,8 +35,12 @@ class CarYearBrandModelForm extends PureComponent {
   }
 
   continue = e => {
-      e.preventDefault();
-      this.props.nextStep();
+    e.preventDefault();
+    this.props.nextStep();
+  }
+  previous = e => {
+    e.preventDefault();
+    this.props.prevStep();
   }
 
   changeMiStep = (input, handleChange) => e => {
@@ -123,8 +127,13 @@ class CarYearBrandModelForm extends PureComponent {
                             </TextField>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
-                                Continue
+                            <Button variant="contained" color="secondary" onClick={this.previous}>
+                                Volver
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button variant="contained" color="primary" onClick={this.continue}>
+                                Continuar
                             </Button>
                         </Grid>
                     </Grid>
@@ -175,10 +184,15 @@ class CarYearBrandModelForm extends PureComponent {
                           </Grid>
                           
                           <Grid item xs={12}>
-                              <Button onClick={this.continue}>
-                                  Continue
-                              </Button>
-                          </Grid>
+                            <Button onClick={this.previous}>
+                                Volver
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button onClick={this.continue}>
+                                Continuar
+                            </Button>
+                        </Grid>
                       </Grid>
                   </form>
                   <div></div>
@@ -244,10 +258,15 @@ class CarYearBrandModelForm extends PureComponent {
                               </TextField>
                           </Grid>
                           <Grid item xs={12}>
-                              <Button onClick={this.continue}>
-                                  Continue
-                              </Button>
-                          </Grid>
+                            <Button onClick={this.previous}>
+                                Volver
+                            </Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button onClick={this.continue}>
+                                Continuar
+                            </Button>
+                        </Grid>
                       </Grid>
                   </form>
                   <div></div>
