@@ -14,7 +14,9 @@ class PrincipalForm extends Component {
         carBrand: null,
         carModel: null,
         carGNC: "9",
-        carDoors: 0
+        carDoors: 0,
+        carId: null,
+        car0km: false
     }
 
     // Go to next step
@@ -44,10 +46,11 @@ class PrincipalForm extends Component {
     }
 
     // Handle fields Change
-    handleChangeFromChild = (input, value) => {
+    handleChangeFromChild = (input, value, km) => {
         //debugger
         this.setState({
-            [input]: value
+            [input]: value,
+            car0km: km
         })
     }
     
@@ -55,8 +58,9 @@ class PrincipalForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { carYear, carGNC, carDoors, carBrand, carModel, name } = this.state;
-        const values = { carYear, carGNC, carDoors, carBrand, carModel, name};
+        const { carYear, carGNC, carDoors, carBrand, carModel, name, carId, car0km } = this.state;
+        const values = { carYear, carGNC, carDoors, carBrand, carModel, name, carId, car0km};
+        console.table(values);
         switch (step) {
             case 1:
                 return (

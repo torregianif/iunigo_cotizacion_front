@@ -16,10 +16,10 @@ class PricesForm extends Component {
 
         let data = { 
             car_id: "460823",
-            car_year: 2019,
-            gnc: false,
+            car_year: this.props.carYear,
+            gnc: this.props.carGNC,
             okm: false,
-            person_age: 24,
+            person_age: this.props.,
             state_code: "ar-b",
             zone: "12"
         }

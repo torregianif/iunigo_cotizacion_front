@@ -46,20 +46,22 @@ class CarYearBrandModelForm extends PureComponent {
   }
 
   changeMiStep = (input, handleChange) => e => {
-    if ([input] == "carYear") {
-      let flag = false;
-      let newYear = e.target.value
-      if (e.target.value === 20190) {
+    let flag = false;
+    let newYear = e.target.value;
+    if (input === "carYear") {
+      
+      if (e.target.value === "20190") {
         flag = true;
-        newYear = 2019
+        newYear = "2019"
       }
-              this.setState({
-                miStep: 2,
-                carYear: newYear,
-                flag
-              })
+      console.log(newYear);
+      this.setState({
+        miStep: 2,
+        carYear: newYear,
+        flag
+      })
 
-      const endpoint_back = `${endpoint.url}/brands?year=${e.target.value}&0km=${flag}`;
+      const endpoint_back = `${endpoint.url}/brands?year=${newYear}&0km=${flag}`;
       fetch(endpoint_back)
         .then((response) => {
           return response.json();
@@ -69,7 +71,7 @@ class CarYearBrandModelForm extends PureComponent {
           });
         })
     } else {
-      if ([input] == "carBrand") {
+      if (input === "carBrand") {
 
         this.setState({
           miStep: 3,
@@ -87,7 +89,7 @@ class CarYearBrandModelForm extends PureComponent {
           })
       }
     }
-    handleChange(input, e.target.value)
+    handleChange(input, newYear, this.state.flag)
   }
 
 
