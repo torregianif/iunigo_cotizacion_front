@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import CarYearForm from './CarYearForm';
 import UserNameForm from './UserNameForm';
 import PricesForm from './PricesForm';
+import UserLocationForm from './UserLocationForm';
+import MailForm from './MailForm';
 
 class PrincipalForm extends Component {
 
     state = {
-        step: 3,
+        step: 1,
         carYear: null
     }
 
@@ -17,6 +19,7 @@ class PrincipalForm extends Component {
             step: step + 1,
             carYear: ''
         })
+        console.log(this.state)
     }
 
     // Go to previous step
@@ -36,8 +39,9 @@ class PrincipalForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { carYear } = this.state;
-        const values = { carYear };
+        const { carYear, name } = this.state;
+        const values = { carYear, name };
+        console.log(this.state.carYear);
         switch (step) {
             case 1:
                 return (
@@ -49,35 +53,35 @@ class PrincipalForm extends Component {
             case 2:
                 return (
                     <div>
-                        <CarYearForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <CarYearForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
             case 3:
                 return (
                     <div>
-                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <PricesForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
             case 4:
                 return (
                     <div>
-                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <UserLocationForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
             case 5:
                 return (
                     <div>
-                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <MailForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
             case 6:
                 return (
                     <div>
-                        <PricesForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <PricesForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
