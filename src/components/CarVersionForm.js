@@ -38,6 +38,8 @@ class CardVersionForm extends PureComponent {
     componentWillMount() {
         const { carYear, carBrand, carModel } = this.props.values 
         const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=false`;
+
+        console.log(endpoint_back);
         
 
         fetch(endpoint_back, {
