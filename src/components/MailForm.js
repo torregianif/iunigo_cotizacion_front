@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Container, TextField, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import logo from '../img/JonathanLeibiusky.jpg';
-
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -20,9 +18,6 @@ const useStyles = makeStyles(theme => ({
     menu: {
       width: 200,
     },
-    logo:{
-      width: 10,  
-    },
   }));
 
 
@@ -32,26 +27,21 @@ export default class UserNameForm extends Component {
         e.preventDefault();
         this.props.nextStep();
     }
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
     
     render() {
 
         const classes = useStyles;
-        const { handleChange } = this.props
+
 
         return (
 
             <Container maxWidth="sm" className={classes.container}>
-              <Grid container justify="center" alignItems="center">
-                 <img src={logo} alt="logo" style={{
-                margin:10,width:200,height: 200,borderRadius: 100,
-
-                 }}>
-
-                 </img>
-              </Grid>
-
-            <h2>Hola! Soy Jonathan. Coticemos tú auto juntos.</h2>
-            <h3>Contame sobre vos</h3>
+            <h3>Ultimo Paso !!!</h3>
+            <p>Dejanos Tu e-mail</p>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={6}>
                         <Grid 
@@ -61,38 +51,30 @@ export default class UserNameForm extends Component {
                         alignItems="center"
                         item xs={12}>
                     <Grid >
-                        <TextField 
-                            id="name"
-                            label="Nombre"
-                            margin="normal"
-                            onChange = {handleChange('name')}
-                            />
-                        </Grid>
-                    <Grid >
                     <TextField
-                            id="lastname"
-                            label="Apellido"
-                            margin="normal"
-                            onChange = {handleChange('lastName')}
+                        id="outlined-email-input"
+                        label="Email"
+                        className={classes.textField}
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        margin="normal"
                         />
                         </Grid>
-                    <Grid >
-                    <TextField
-                            id="standard-number"
-                            label="Edad"
-                            type="number"
-                            margin="normal"
-                            onChange = {handleChange('age')}
-                        />
-                        </Grid>
+                  
                      
                        
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
-                                Continuar
+                            <Button onClick={this.previous}>
+                                Volver
                             </Button>
                         </Grid>
+                        <Grid item xs={12}>
+                            <Button onClick={this.continue}>
+                                Ver Precios
+                            </Button>
+                            </Grid>
                     </Grid>
                 </form>
                 <div></div>
