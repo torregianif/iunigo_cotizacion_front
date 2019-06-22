@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import CarYearForm from './CarYearForm';
+import CarYearBrandModelForm from './CarYearBrandModelForm';
 import UserNameForm from './UserNameForm';
 import PricesForm from './PricesForm';
 
 class PrincipalForm extends Component {
 
     state = {
-        step: 3,
-        carYear: null
+        step: 2,
+        carYear: null,
+        carBrand: null,
+        carModel: null
     }
 
     // Go to next step
@@ -15,7 +17,6 @@ class PrincipalForm extends Component {
         const { step } = this.state;
         this.setState({
             step: step + 1,
-            carYear: ''
         })
     }
 
@@ -28,16 +29,18 @@ class PrincipalForm extends Component {
     }
 
     // Handle fields Change
-    handleChange = input => e => {
+    handleChange = (input, value) => {
+        //debugger
         this.setState({
-            [input]: e.target.value
+            [input]: value
         })
     }
+    
 
     render() {
         const { step } = this.state;
-        const { carYear } = this.state;
-        const values = { carYear };
+        const { carYear, carBrand, carModel } = this.state;
+        const values = { carYear, carBrand,carModel };
         switch(step){
             case 1:
                 return(
@@ -48,7 +51,7 @@ class PrincipalForm extends Component {
             case 2:
                 return(
                     <div>
-                        <CarYearForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
+                        <CarYearBrandModelForm nextStep={this.nextStep} handleChange={this.handleChange} values={values}/>
                     </div>
                 )
             case 3:
