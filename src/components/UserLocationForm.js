@@ -38,7 +38,6 @@ class UserLocationForm extends PureComponent {
 
 
         const { values, handleChange } = this.props;
-        console.log('name')
         const { name } = this.props.values;
         const classes = useStyles;
         const locations = [

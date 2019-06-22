@@ -41,7 +41,6 @@ class PricesForm extends Component {
         ).then(responseDataBack => {
             const results = responseDataBack.packages;
             var plans = [];
-            console.log(results);
 
             results.forEach( (plan) => {
                 const planDetails = <PricesCards plan={plan}/>
