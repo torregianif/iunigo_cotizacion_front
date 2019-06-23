@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, TextField, Button, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import logo from '../img/JonathanLeibiusky.jpg';
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -40,6 +41,15 @@ export default class UserNameForm extends Component {
         return (
 
             <Container maxWidth="sm" className={classes.container}>
+              <Grid container justify="center" alignItems="center">
+                 <img src={logo} alt="logo" style={{
+                margin:10,width:100,height: 100,borderRadius: 50,
+
+                 }}>
+
+                 </img>
+              </Grid>
+            
             <h3>Ultimo Paso !!!</h3>
             <p>Dejanos Tu e-mail</p>
                 <form className={classes.form} noValidate>
@@ -66,15 +76,15 @@ export default class UserNameForm extends Component {
                        
                         </Grid>
                         <Grid item xs={12}>
+                            <Button variant="contained" color="primary" onClick={this.continue}>
+                                Ver Precios
+                            </Button>
+                            </Grid>
+                        <Grid item xs={12}>
                             <Button onClick={this.previous}>
                                 Volver
                             </Button>
                         </Grid>
-                        <Grid item xs={12}>
-                            <Button onClick={this.continue}>
-                                Ver Precios
-                            </Button>
-                            </Grid>
                     </Grid>
                 </form>
                 <div></div>

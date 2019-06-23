@@ -20,36 +20,73 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
+
 class CardVersionForm extends PureComponent {
+
+    changeMiStep = (input, handleChangeFromChild) => e => {
+
+        const doors = e.target.value;
+        console.log(doors)
+        const { carYear, carBrand, carModel, car0km } = this.props.values
+        const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}&door=${doors}`;
+        fetch(endpoint_back, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+            },
+        },
+        ).then(response => {
+            if (response.ok) {
+                response.json().then(resp => {
+                    const version = [...new Set(resp.map(x => x.version))] || [];
+                    this.setState(
+                        { version }
+                    )
+                });
+            }
+        });
+        handleChangeFromChild(input, doors)
+    }
 
     continue = e => {
         e.preventDefault();
-        if(this.props.values.carDoors >0 && this.props.values.carGNC < 9){
+        if (this.props.values.carDoors > 0 && this.props.values.carGNC < 9) {
+            const { carYear, carBrand, carModel, car0km, carDoors, carVersion } = this.props.values
+            const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}&door=${carDoors}&version=${carVersion}`;
+            fetch(endpoint_back, {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                },
+            },
+            ).then(response => {
+                if (response.ok) {
+                    response.json().then(resp => {
+                        const version = [...new Set(resp.map(x => x.version))] || [];
+                        this.setState(
+                            { version }
+                        )
+                    });
+                }
+            });
             this.props.nextStep();
         }
     }
-    
 
     previous = e => {
         e.preventDefault();
         this.props.prevStep();
-        }
-        
-    
+    }
 
     state = {
         puertas: [],
-        gnc: false
+        gnc: false,
+        version: []
     }
 
-
     componentWillMount() {
-        const { carYear, carBrand, carModel, car0km } = this.props.values 
+        const { carYear, carBrand, carModel, car0km } = this.props.values
         const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}`;
-
-        console.log(endpoint_back);
-        
-
         fetch(endpoint_back, {
             method: 'GET',
             headers: {
@@ -70,33 +107,33 @@ class CardVersionForm extends PureComponent {
 
 
     render() {
-        const { handleChange, values } = this.props;
+        const { handleChange, values, handleChangeFromChild } = this.props;
         const classes = useStyles;
 
         return (
             <Container maxWidth="sm" className={classes.container}>
-             <Grid container justify="center" alignItems="center">
-                 <img src={logo} alt="logo" style={{
-                margin:10,width:100,height: 100,borderRadius: 50,
+                <Grid container justify="center" alignItems="center">
+                    <img src={logo} alt="logo" style={{
+                        margin: 10, width: 100, height: 100, borderRadius: 50,
 
-                 }}>
+                    }}>
 
-                 </img>
-              </Grid>
-            <h3>Terminemos con los ultimos detalles del Auto</h3>
+                    </img>
+                </Grid>
+                <h3>Terminemos con los ultimos detalles del Auto</h3>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <FormControl required className={classes.formControl}>
                                 <InputLabel htmlFor="doors">Cuantas puertas tiene tu auto?</InputLabel>
-                                <Select 
+                                <Select
                                     value={values.carDoors}
-                                    onChange={handleChange('carDoors')}
+                                    onChange={this.changeMiStep("carDoors", handleChangeFromChild)}
                                     inputProps={{
                                         name: 'doors',
                                         id: 'doors',
                                     }}
-                                    style={{width:300}}
+                                    style={{ width: 300 }}
                                 >
                                     <MenuItem value="0">
                                         <em>Seleccione una opcion</em>
@@ -120,7 +157,7 @@ class CardVersionForm extends PureComponent {
                                         name: 'gnc',
                                         id: 'gnc',
                                     }}
-                                    style={{width:300}}
+                                    style={{ width: 300 }}
                                 >
                                     <MenuItem value="9">
                                         <em>Seleccione una opcion</em>
@@ -131,14 +168,37 @@ class CardVersionForm extends PureComponent {
                                 <FormHelperText>Necesitamos este dato.</FormHelperText>
                             </FormControl>
                         </Grid>
-
+                        <Grid item xs={12}>
+                            <FormControl required className={classes.formControl}>
+                                <InputLabel htmlFor="carVersion">Selecciona la version exacta de tu auto</InputLabel>
+                                <Select
+                                    value={values.carVersion}
+                                    onChange={handleChange('carVersion')}
+                                    inputProps={{
+                                        name: 'carVersion',
+                                        id: 'carVersion',
+                                    }}
+                                    style={{ width: 300 }}
+                                >
+                                    <MenuItem value="9">
+                                        <em>Seleccione una opcion</em>
+                                    </MenuItem>
+                                    {this.state.version.map(option => (
+                                        <MenuItem key={option} value={option}>
+                                            {option}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                                <FormHelperText>Necesitamos este dato.</FormHelperText>
+                            </FormControl>
+                        </Grid>
                         <Grid item xs={12}>
                             <Button variant="contained" color="primary" onClick={this.continue}>
                                 Continuar
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button variant="contained" color="secondary" onClick={this.previous}>
+                            <Button  onClick={this.previous}>
                                 volver
                             </Button>
                         </Grid>
