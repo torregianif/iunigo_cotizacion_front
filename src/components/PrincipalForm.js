@@ -8,11 +8,12 @@ import CarVersionForm from './CarVersionForm';
 import CarPatentForm from './CarPatentForm';
 import CheckOutForm from './CheckOutForm';
 import SimpleAppBar from './AppBar';
+import InicioCotizacion from './InicioCotizacion';
 
 class PrincipalForm extends Component {
 
     state = {
-        step: 1,
+        step: 0,
         carYear: null,
         carBrand: null,
         carModel: null,
@@ -23,7 +24,8 @@ class PrincipalForm extends Component {
         car0km: false,
         name: '',
         lastName: '',
-        age: null,
+        age: '',
+        userLocation: ''
     }
 
     // Go to next step
@@ -64,14 +66,23 @@ class PrincipalForm extends Component {
     render() {
         console.log("CAR ID", this.state.carId)
         const { step } = this.state;
-        const { name, lastName, age, carYear, carGNC, carDoors, carBrand, carModel, carId, car0km, carVersion } = this.state;
-        const values = { name, lastName, age, carYear, carGNC, carDoors, carBrand, carModel, carId, car0km, carVersion};
+        const { name, lastName, age, carYear, carGNC, carDoors, carBrand, carModel, carId, car0km, carVersion, userLocation } = this.state;
+        const values = { name, lastName, age, carYear, carGNC, carDoors, carBrand, carModel, carId, car0km, carVersion, userLocation};
         switch (step) {
+
+            case 0:
+                return (
+                    <div>
+                        <SimpleAppBar/>
+                        <InicioCotizacion nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                    </div>
+                );
+
             case 1:
                 return (
                     <div>
                         <SimpleAppBar/>
-                        <UserNameForm nextStep={this.nextStep} handleChange={this.handleChange} values={values} />
+                        <UserNameForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 

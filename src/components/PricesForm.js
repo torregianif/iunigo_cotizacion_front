@@ -20,25 +20,27 @@ class PricesForm extends Component {
 
     componentDidMount(){
 
+        // let data = { 
+        //     car_id: "460823",
+        //     car_year: 2019,
+        //     gnc: false,
+        //     okm: false,
+        //     person_age: 24,
+        //     state_code: "ar-b",
+        //     zone: "12"
+        // }
+
         let data = { 
-            car_id: "460823",
-            car_year: 2019,
-            gnc: false,
+            car_id: this.props.values.carVersion,
+            car_year: this.props.values.carYear,
+            gnc: this.props.values.carGNC,
             okm: false,
-            person_age: 24,
+            person_age: this.props.values.age,
             state_code: "ar-b",
             zone: "12"
         }
 
-        // let data = { 
-        //     car_id: "460823",
-        //     car_year: this.props.carYear,
-        //     gnc: this.props.carGNC,
-        //     okm: false,
-        //     person_age: this.props.age,
-        //     state_code: "ar-b",
-        //     zone: "12"
-        // }
+        console.table(data);
 
         const endpoint_back = `${endpoint.url_precios}`;
 

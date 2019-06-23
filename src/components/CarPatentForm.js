@@ -14,6 +14,12 @@ export default class CarPatentForm extends Component {
         this.props.nextStep();
     }
 
+    previous = e => {
+        console.log("Entro")
+        e.preventDefault();
+        this.props.prevStep();
+    }
+
     render() {
         const { handleChange } = this.props
         return (
@@ -37,9 +43,14 @@ export default class CarPatentForm extends Component {
                         />
                         <FormHelperText>Ejemplo: AAA111 o A003946RN (nuevas)</FormHelperText>
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12}  style={{marginTop: 10}}>
                         <Button variant="contained" color="primary" onClick={this.continue}>
                             Continuar
+                        </Button>
+                    </Grid>
+                    <Grid item xs={12} style={{marginTop: 5}}>
+                        <Button variant="contained" onClick={this.previous}>
+                            Volver
                         </Button>
                     </Grid>
                 </Grid>
