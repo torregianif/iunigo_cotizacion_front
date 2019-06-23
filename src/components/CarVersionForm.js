@@ -115,9 +115,9 @@ class CarVersionForm extends PureComponent {
                     <Grid container spacing={2}>
                         <Grid item xs={12} >
                             <FormControl required className={classes.formControl} style={{ width: "100%" }}>
-                                
+                            <InputLabel htmlFor="carVersion">Cuantas puertas tiene tu auto?</InputLabel>
                                 <Select
-                                    style={{ width: "100%" }}
+                                    style={{ width: "100%",color:"grey"  }}
                                     value={values.carDoors}
                                     onChange={this.obtainMyInfo("carDoors", handleChangeFromChild)}
                                     inputProps={{
@@ -140,9 +140,9 @@ class CarVersionForm extends PureComponent {
                         </Grid>
                         <Grid item xs={12}>
                             <FormControl required className={classes.formControl}  style={{ width: "100%" }}>
-                                
+                            <InputLabel htmlFor="carVersion">Tenes gnc instalado en tu auto?</InputLabel>
                                 <Select
-                                     style={{ width: "100%" }}
+                                     style={{ width: "100%",color:"grey" }}
                                     value={values.carGNC}
                                     onChange={handleChange('carGNC')}
                                     inputProps={{

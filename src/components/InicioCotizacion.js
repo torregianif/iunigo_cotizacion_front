@@ -11,7 +11,7 @@ export default class InicioCotizacion extends Component {
 
     render() {
         return (
-            <Container>
+            <Container style={{marginTop:150, minHeight:"80vh"}}>
                 <Grid>
                     <h2>El mejor seguro de auto, 
                     al mejor precio.</h2>

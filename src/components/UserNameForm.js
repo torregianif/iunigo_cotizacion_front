@@ -110,7 +110,7 @@ export default class UserNameForm extends Component {
               </Button>
             </Grid>
             <Grid item xs={12}>
-              <Button variant="contained" onClick={this.previous}>
+              <Button  onClick={this.previous}>
                 Volver
               </Button>
             </Grid>
