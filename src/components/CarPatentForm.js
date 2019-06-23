@@ -3,15 +3,13 @@ import { Container, Grid, TextField, Button, FormHelperText } from '@material-ui
 
 export default class CarPatentForm extends Component {
 
-    constructor(props){
-        super(props);
-        console.log(props)
-    }
-
     continue = e => {
-        console.log("Entro")
         e.preventDefault();
         this.props.nextStep();
+    }
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
     }
 
     previous = e => {
@@ -30,7 +28,7 @@ export default class CarPatentForm extends Component {
                     justify="center"
                     alignItems="center"
                     item xs={12}
-                    style={{marginTop:10}}
+                    style={{marginTop:35}}
                 >
                     <h3>Última info sobre tu auto...</h3>
                     <Grid style={{ width: "50%" }}>

@@ -20,7 +20,6 @@ class PrincipalForm extends Component {
         carGNC: "9",
         carDoors: 0,
         carVersion: '',
-        carId: null,
         car0km: false,
         name: '',
         lastName: '',
@@ -60,11 +59,10 @@ class PrincipalForm extends Component {
             car0km: km
         })
     }
-    
+
 
 
     render() {
-        console.log("CAR ID", this.state.carId)
         const { step } = this.state;
         const { name, lastName, age, carYear, carGNC, carDoors, carBrand, carModel, carId, car0km, carVersion, userLocation } = this.state;
         const values = { name, lastName, age, carYear, carGNC, carDoors, carBrand, carModel, carId, car0km, carVersion, userLocation};
@@ -89,15 +87,15 @@ class PrincipalForm extends Component {
             case 2:
                 return (
                     <div>
-                        <SimpleAppBar/>
-                        <CarYearBrandModelForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChangeFromChild} values={values}/>
+                        <SimpleAppBar />
+                        <CarYearBrandModelForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChangeFromChild} values={values} />
                     </div>
                 );
 
             case 3:
                 return (
                     <div>
-                        <SimpleAppBar/>
+                        <SimpleAppBar />
                         <CarVersionForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} handleChangeFromChild={this.handleChangeFromChild} values={values} />
                     </div>
                 );
@@ -105,7 +103,7 @@ class PrincipalForm extends Component {
             case 4:
                 return (
                     <div>
-                        <SimpleAppBar/>
+                        <SimpleAppBar />
                         <UserLocationForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
@@ -113,32 +111,32 @@ class PrincipalForm extends Component {
             case 5:
                 return (
                     <div>
-                        <SimpleAppBar/>
-                        <MailForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
+                        <SimpleAppBar />
+                        <MailForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
             case 6:
                 return (
                     <div>
-                        <SimpleAppBar/>
-                        <PricesForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
+                        <SimpleAppBar />
+                        <PricesForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 
             case 7:
                 return (
                     <div>
-                        <SimpleAppBar/>
-                        <CarPatentForm nextStep={this.nextStep} prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
+                        <SimpleAppBar />
+                        <CarPatentForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
-                ); 
+                );
 
             case 8:
                 return (
                     <div>
-                        <SimpleAppBar/>
-                        <CheckOutForm prevStep={this.prevStep}  handleChange={this.handleChange} values={values} />
+                        <SimpleAppBar />
+                        <CheckOutForm prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
                     </div>
                 );
 

@@ -31,18 +31,20 @@ class PricesForm extends Component {
         // }
 
         let data = { 
-            car_id: this.props.values.carVersion,
-            car_year: this.props.values.carYear,
-            gnc: this.props.values.carGNC,
+            car_id: parseInt(this.props.values.carVersion),
+            car_year: parseInt(this.props.values.carYear),
+            gnc: parseInt(this.props.values.carGNC),
             okm: false,
             person_age: this.props.values.age,
             state_code: "ar-b",
             zone: "12"
         }
 
-        console.table(data);
+        console.log(data);
 
         const endpoint_back = `${endpoint.url_precios}`;
+
+        console.log(endpoint_back);
 
         fetch(endpoint_back,
             {
@@ -59,13 +61,11 @@ class PricesForm extends Component {
         ).then(responseDataBack => {
             const results = responseDataBack.packages;
             var plans = [];
-            console.log(results);
 
             results.forEach( (plan) => {
                 const planDetails = <PricesCards plan={plan} nextStep={this.props.nextStep}/>
                 plans.push(planDetails);
                 if(plan.name === "full"){
-                    console.log(plan.price)
                     this.setState({
                         allProducts: plan.products,
                         maxPrice: plan.price
@@ -77,9 +77,6 @@ class PricesForm extends Component {
     }
 
     render() {
-
-        console.log(this.props.values.carVersion)
-
         return (
             <Container style={{marginTop:10}}>
                 <Button onClick={this.previous}>Volver</Button>

@@ -79,6 +79,7 @@ class UserLocationForm extends PureComponent {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
+                                style={{ width: "100%" }}
                                 id="standard-select-currency"
                                 select
                                 label="Localidad"

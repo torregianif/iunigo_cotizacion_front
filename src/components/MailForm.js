@@ -43,14 +43,14 @@ export default class UserNameForm extends Component {
             <Container maxWidth="sm" className={classes.container}>
               <Grid container justify="center" alignItems="center">
                  <img src={logo} alt="logo" style={{
-                margin:10,width:100,height: 100,borderRadius: 50,
+                margin:35,width:100,height: 100,borderRadius: 50,
 
                  }}>
 
                  </img>
               </Grid>
             
-            <h3>Ultimo Paso !!!</h3>
+            <h3>Último Paso !!!</h3>
             <p>Dejanos Tu e-mail</p>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={6}>
@@ -60,8 +60,9 @@ export default class UserNameForm extends Component {
                         justify="center"
                         alignItems="center"
                         item xs={12}>
-                    <Grid >
+                    <Grid  style={{width:"100%"}}>
                     <TextField
+                        style={{width:"100%"}}
                         id="outlined-email-input"
                         label="Email"
                         className={classes.textField}
