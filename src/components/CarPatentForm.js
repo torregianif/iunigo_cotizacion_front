@@ -7,6 +7,10 @@ export default class CarPatentForm extends Component {
         e.preventDefault();
         this.props.nextStep();
     }
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
 
     render() {
         const { handleChange } = this.props
@@ -36,6 +40,11 @@ export default class CarPatentForm extends Component {
                             Continuar
                         </Button>
                     </Grid>
+                    <Grid item xs={12}>
+                            <Button onClick={this.previous}>
+                                Volver
+                            </Button>
+                        </Grid>
                 </Grid>
             </Container>
         )
