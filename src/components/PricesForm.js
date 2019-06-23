@@ -30,6 +30,8 @@ class PricesForm extends Component {
         //     zone: "12"
         // }
 
+        console.log(this.props.values);
+
         let data = { 
             car_id: parseInt(this.props.values.carVersion),
             car_year: parseInt(this.props.values.carYear),
@@ -40,11 +42,7 @@ class PricesForm extends Component {
             zone: "12"
         }
 
-        console.log(data);
-
         const endpoint_back = `${endpoint.url_precios}`;
-
-        console.log(endpoint_back);
 
         fetch(endpoint_back,
             {

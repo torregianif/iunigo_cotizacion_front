@@ -83,11 +83,10 @@ class UserLocationForm extends PureComponent {
                                 id="standard-select-currency"
                                 select
                                 label="Localidad"
-                                helperText="Selecciona el año del vehículo"
                                 className={classes.textField}
                                 onChange={handleChange('userLocation')}
                                 margin="normal"
-                                value={values.carYear}
+                                value={values.userLocation}
                             >
                                 {locations.map(option => (
                                     <MenuItem key={option.value} value={option.value}>
