@@ -72,6 +72,7 @@ export default class UserNameForm extends Component {
                   margin="normal"
                   onChange={handleChange('name')}
                   value={values.name}
+                  required
                 />
               </Grid>
               <Grid style={{ width: "100%" }}>

@@ -116,7 +116,7 @@ class CarVersionForm extends PureComponent {
             <Container maxWidth="sm" className={classes.container}>
                 <Grid container justify="center" alignItems="center">
                     <img src={logo} alt="logo" style={{
-                        margin: 10, width: 100, height: 100, borderRadius: 50,
+                        margin:35, width: 100, height: 100, borderRadius: 50,
 
                     }}>
 
@@ -125,20 +125,21 @@ class CarVersionForm extends PureComponent {
                 <h3>Terminemos con los ultimos detalles del Auto</h3>
                 <form className={classes.form} noValidate>
                     <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                            <FormControl required className={classes.formControl}>
-                                <InputLabel htmlFor="doors">Cuantas puertas tiene tu auto?</InputLabel>
+                        <Grid item xs={12} >
+                            <FormControl required className={classes.formControl} style={{ width: "100%" }}>
+                                
                                 <Select
+                                    style={{ width: "100%" }}
                                     value={values.carDoors}
                                     onChange={this.changeMiStep("carDoors", handleChangeFromChild)}
                                     inputProps={{
                                         name: 'doors',
                                         id: 'doors',
                                     }}
-                                    style={{ width: 300 }}
+                                
                                 >
-                                    <MenuItem value="0">
-                                        <em>Seleccione una opcion</em>
+                                    <MenuItem value="0" style={{ color: "#0000008a" }}>
+                                        Cuantas puertas tiene tu auto?
                                     </MenuItem>
                                     {this.state.puertas.map(option => (
                                         <MenuItem key={option} value={option}>
@@ -146,32 +147,32 @@ class CarVersionForm extends PureComponent {
                                         </MenuItem>
                                     ))}
                                 </Select>
-                                <FormHelperText>Necesitamos este dato.</FormHelperText>
+                                
                             </FormControl>
                         </Grid>
                         <Grid item xs={12}>
-                            <FormControl required className={classes.formControl}>
-                                <InputLabel htmlFor="gnc">Tenes gnc instalado en tu auto?</InputLabel>
+                            <FormControl required className={classes.formControl}  style={{ width: "100%" }}>
+                                
                                 <Select
+                                     style={{ width: "100%" }}
                                     value={values.carGNC}
                                     onChange={handleChange('carGNC')}
                                     inputProps={{
                                         name: 'gnc',
                                         id: 'gnc',
                                     }}
-                                    style={{ width: 300 }}
                                 >
-                                    <MenuItem value="9">
-                                        <em>Seleccione una opcion</em>
+                                    <MenuItem value="9"  style={{ width: "100%", color:"grey" }}>
+                                        Tenes gnc instalado en tu auto?
                                     </MenuItem>
                                     <MenuItem key="0" value='0'>No</MenuItem>
                                     <MenuItem key="1" value='1'>Si</MenuItem>
                                 </Select>
-                                <FormHelperText>Necesitamos este dato.</FormHelperText>
+                                
                             </FormControl>
                         </Grid>
                         <Grid item xs={12}>
-                            <FormControl required className={classes.formControl}>
+                            <FormControl required className={classes.formControl} style={{ width: "100%" }}>
                                 <InputLabel htmlFor="carVersion">Selecciona la version exacta de tu auto</InputLabel>
                                 <Select
                                     value={values.carVersion}
@@ -180,18 +181,16 @@ class CarVersionForm extends PureComponent {
                                         name: 'carVersion',
                                         id: 'carVersion',
                                     }}
-                                    style={{ width: 300 }}
+                                    style={{ width: "100%" }}
                                 >
-                                    <MenuItem value="9">
-                                        <em>Seleccione una opcion</em>
-                                    </MenuItem>
+                                    
                                     {this.state.version.map(option => (
                                         <MenuItem key={option} value={option}>
                                             {option}
                                         </MenuItem>
                                     ))}
                                 </Select>
-                                <FormHelperText>Necesitamos este dato.</FormHelperText>
+                                
                             </FormControl>
                         </Grid>
                         <Grid item xs={12}>

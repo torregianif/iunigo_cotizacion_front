@@ -41,13 +41,13 @@ export default class PricesCards extends Component {
             return (
                 <Grid item xs={3}>
                     <Card style={{ width: '18rem' }}>
-                    <Card.Body>
+                    <Card.Body style={{background:"#409",minHeight:"200px"}}>
                         <Card.Title>iúnigo<b style={{textTransform: "uppercase"}}>CUSTOM</b></Card.Title>
                         <Card.Subtitle className="mb-2 text-muted"><b>${this.state.price.toFixed(2)}</b></Card.Subtitle>
                         <Card.Text>
                         <b>Plan Customizable</b>
                         </Card.Text>
-                        <Button variant="primary" onClick={this.continue}>Elegir</Button>
+                        <Button variant="primary" className="btn-block" onClick={this.continue}>Elegir</Button>
                     </Card.Body>
                     <ListGroup variant="flush">
                         <ListGroup.Item><b>Beneficios:</b></ListGroup.Item>
@@ -69,13 +69,13 @@ export default class PricesCards extends Component {
             return (
                 <Grid item xs={3}>
                     <Card style={{ width: '18rem' }}>
-                    <Card.Body>
+                    <Card.Body style={{background:"#409",minHeight:"200px",color:"white"}}>
                         <Card.Title>iúnigo<b style={{textTransform: "uppercase"}}>{this.props.plan.name}</b></Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted"><b>${this.props.plan.price.toFixed(2)}</b></Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-white"><b>${this.props.plan.price.toFixed(2)}</b></Card.Subtitle>
                         <Card.Text>
                         <b>{this.props.plan.description}</b>
                         </Card.Text>
-                        <Button variant="primary" onClick={this.continue}>Elegir</Button>
+                        <Button variant="primary" className="btn-block" onClick={this.continue}>Elegir</Button>
                     </Card.Body>
                     <ListGroup variant="flush">
                         <ListGroup.Item><b>Beneficios:</b></ListGroup.Item>

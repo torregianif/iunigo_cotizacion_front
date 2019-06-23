@@ -67,7 +67,7 @@ class UserLocationForm extends PureComponent {
             <Container maxWidth="sm" className={classes.container}>
               <Grid container justify="center" alignItems="center">
                  <img src={logo} alt="logo" style={{
-                margin:10,width:100,height: 100,borderRadius: 50,
+                margin:35,width:100,height: 100,borderRadius: 50,
 
                  }}>
 
@@ -79,6 +79,7 @@ class UserLocationForm extends PureComponent {
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
+                                style={{ width: "100%" }}
                                 id="standard-select-currency"
                                 select
                                 label="Localidad"

@@ -24,7 +24,7 @@ export default class CarPatentForm extends Component {
                     justify="center"
                     alignItems="center"
                     item xs={12}
-                    style={{marginTop:10}}
+                    style={{marginTop:35}}
                 >
                     <h3>Última info sobre tu auto...</h3>
                     <Grid style={{ width: "50%" }}>
