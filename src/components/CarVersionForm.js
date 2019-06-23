@@ -23,56 +23,44 @@ const useStyles = makeStyles(theme => ({
 
 class CarVersionForm extends PureComponent {
 
-    changeMiStep = (input, handleChangeFromChild) => e => {
-
-        const doors = e.target.value;
-        
-        const { carYear, carBrand, carModel, car0km } = this.props.values
-        const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}&door=${doors}`;
-        fetch(endpoint_back, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-            },
-        },
-        ).then(response => {
-            if (response.ok) {
-                response.json().then(resp => {
-                    const version = [...new Set(resp.map(x => x.version))] || [];
-                    this.setState(
-                        { version }
-                    )
-                });
-            }
-        });
-        handleChangeFromChild(input, doors)
+    obtainMyInfo = (input, handleChangeFromChild) => e => {
+        let incomingValue;
+        switch(input){
+            case "carDoors":
+                    incomingValue = e.target.value;
+                    const { carYear, carBrand, carModel, car0km } = this.props.values
+                    const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}&door=${incomingValue}`;
+                    fetch(endpoint_back, {
+                        method: 'GET',
+                        headers: {
+                            Accept: 'application/json',
+                        },
+                    },
+                    ).then(response => {
+                        if (response.ok) {
+                            response.json().then(resp => {
+                                const version = [...new Set(resp.map(x => x = {
+                                    ver: x.version,
+                                    carId: x.car_id
+                                }))] || [];
+                                this.setState(
+                                    { version }
+                                )
+                            });
+                        }
+                    });
+            break;
+            case "carVersion":
+                    incomingValue = e.target.value;
+            break;
+            default:
+        }
+        handleChangeFromChild(input, incomingValue)
     }
 
     continue = e => {
         e.preventDefault();
-        if (this.props.values.carDoors > 0 && this.props.values.carGNC < 9) {
-            
-            const { carYear, carBrand, carModel, car0km, carDoors, carVersion } = this.props.values
-            const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=false&door=${carDoors}&version=${carVersion}`;
-            console.log(endpoint_back)
-            fetch(endpoint_back, {
-                method: 'GET',
-                headers: {
-                    Accept: 'application/json',
-                },
-            },
-            ).then(response => {
-                if (response.ok) {
-                    response.json().then(resp => {
-                        const version = [...new Set(resp.map(x => x.version))] || [];
-                        this.setState(
-                            { version }
-                        )
-                    });
-                }
-            });
-            this.props.nextStep();
-        }
+        this.props.nextStep();
     }
 
     previous = e => {
@@ -130,7 +118,7 @@ class CarVersionForm extends PureComponent {
                                 <InputLabel htmlFor="doors">Cuantas puertas tiene tu auto?</InputLabel>
                                 <Select
                                     value={values.carDoors}
-                                    onChange={this.changeMiStep("carDoors", handleChangeFromChild)}
+                                    onChange={this.obtainMyInfo("carDoors", handleChangeFromChild)}
                                     inputProps={{
                                         name: 'doors',
                                         id: 'doors',
@@ -175,7 +163,7 @@ class CarVersionForm extends PureComponent {
                                 <InputLabel htmlFor="carVersion">Selecciona la version exacta de tu auto</InputLabel>
                                 <Select
                                     value={values.carVersion}
-                                    onChange={handleChange('carVersion')}
+                                    onChange={this.obtainMyInfo("carVersion", handleChangeFromChild)}
                                     inputProps={{
                                         name: 'carVersion',
                                         id: 'carVersion',
@@ -186,8 +174,8 @@ class CarVersionForm extends PureComponent {
                                         <em>Seleccione una opcion</em>
                                     </MenuItem>
                                     {this.state.version.map(option => (
-                                        <MenuItem key={option} value={option}>
-                                            {option}
+                                        <MenuItem key={option.carId} value={option.carId}>
+                                            {option.ver}
                                         </MenuItem>
                                     ))}
                                 </Select>
@@ -200,7 +188,7 @@ class CarVersionForm extends PureComponent {
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button  onClick={this.previous}>
+                            <Button onClick={this.previous}>
                                 volver
                             </Button>
                         </Grid>

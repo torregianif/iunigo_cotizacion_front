@@ -3,13 +3,7 @@ import { Container, Grid, TextField, Button, FormHelperText } from '@material-ui
 
 export default class CarPatentForm extends Component {
 
-    constructor(props){
-        super(props);
-        console.log(props)
-    }
-
     continue = e => {
-        console.log("Entro")
         e.preventDefault();
         this.props.nextStep();
     }

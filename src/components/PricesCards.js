@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, ListGroup, Button } from 'react-bootstrap';
-import { Container, Grid, Checkbox, FormControlLabel } from '@material-ui/core';
+import { Grid, Checkbox } from '@material-ui/core';
 
 export default class PricesCards extends Component {
 
@@ -37,7 +37,7 @@ export default class PricesCards extends Component {
 
     render() {
 
-        if(this.props.customizable == 1){
+        if(this.props.customizable === 1){
             return (
                 <Grid item xs={3}>
                     <Card style={{ width: '18rem' }}>

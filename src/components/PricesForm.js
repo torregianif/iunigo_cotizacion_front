@@ -57,13 +57,11 @@ class PricesForm extends Component {
         ).then(responseDataBack => {
             const results = responseDataBack.packages;
             var plans = [];
-            console.log(results);
 
             results.forEach( (plan) => {
                 const planDetails = <PricesCards plan={plan} nextStep={this.props.nextStep}/>
                 plans.push(planDetails);
                 if(plan.name === "full"){
-                    console.log(plan.price)
                     this.setState({
                         allProducts: plan.products,
                         maxPrice: plan.price
@@ -75,9 +73,6 @@ class PricesForm extends Component {
     }
 
     render() {
-
-        console.log(this.props.values.carVersion)
-
         return (
             <Container style={{marginTop:10}}>
                 <Button onClick={this.previous}>Volver</Button>

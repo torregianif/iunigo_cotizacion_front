@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Container, Button, Grid, FormControl, Select, InputLabel, TextField } from '@material-ui/core';
+import { Container, Button, Grid, TextField } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import endpoint from '../constants/endpoint';
@@ -55,7 +55,6 @@ class CarYearBrandModelForm extends PureComponent {
         flag = true;
         newYear = "2019"
       }
-      console.log(newYear);
       this.setState({
         miStep: 2,
         carYear: newYear,
@@ -95,14 +94,9 @@ class CarYearBrandModelForm extends PureComponent {
 
 
   render() {
-
     const { values, handleChange} = this.props;
     const { miStep } = this.state;
-    
-    console.log('name')
     const { name } = this.props.values;
-
-
     const classes = useStyles;
     const years = [
       {
