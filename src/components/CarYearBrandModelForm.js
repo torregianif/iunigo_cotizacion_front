@@ -281,6 +281,7 @@ class CarYearBrandModelForm extends PureComponent {
             <div></div>
           </Container>
         )
+        default:
     }
 
 

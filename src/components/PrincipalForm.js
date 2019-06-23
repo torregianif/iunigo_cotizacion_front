@@ -15,8 +15,12 @@ class PrincipalForm extends Component {
         carModel: null,
         carGNC: "9",
         carDoors: 0,
+        carVersion: '',
         carId: null,
-        car0km: false
+        car0km: false,
+        name: '',
+        lastName: '',
+        age: 0,
     }
 
     // Go to next step
@@ -56,9 +60,8 @@ class PrincipalForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { carYear, carGNC, carDoors, carBrand, carModel, name, carId, car0km } = this.state;
-        const values = { carYear, carGNC, carDoors, carBrand, carModel, name, carId, car0km};
-        console.table(values);
+        const { carYear, carGNC, carDoors, carBrand, carModel, name, carId, car0km, carVersion } = this.state;
+        const values = { carYear, carGNC, carDoors, carBrand, carModel, name, carId, car0km, carVersion};
         switch (step) {
             case 1:
                 return (
@@ -77,7 +80,7 @@ class PrincipalForm extends Component {
             case 3:
                 return (
                     <div>
-                        <CardVersionForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} values={values} />
+                        <CardVersionForm nextStep={this.nextStep} prevStep={this.prevStep} handleChange={this.handleChange} handleChangeFromChild={this.handleChangeFromChild} values={values} />
                     </div>
                 );
 
