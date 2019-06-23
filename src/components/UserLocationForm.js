@@ -96,7 +96,7 @@ class UserLocationForm extends PureComponent {
                             </TextField>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
+                            <Button variant="contained" color="primary" onClick={this.continue}>
                                 Continuar
                             </Button>
                         </Grid>

@@ -76,7 +76,7 @@ export default class UserNameForm extends Component {
                        
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
+                            <Button variant="contained" color="primary" onClick={this.continue}>
                                 Ver Precios
                             </Button>
                             </Grid>
