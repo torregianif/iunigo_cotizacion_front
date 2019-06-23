@@ -85,7 +85,7 @@ class UserLocationForm extends PureComponent {
                                 label="Localidad"
                                 helperText="Selecciona el año del vehículo"
                                 className={classes.textField}
-                                onChange={handleChange('carYear')}
+                                onChange={handleChange('userLocation')}
                                 margin="normal"
                                 value={values.carYear}
                             >

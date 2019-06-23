@@ -34,6 +34,11 @@ export default class UserNameForm extends Component {
     this.props.nextStep();
   }
 
+  previous = e => {
+    e.preventDefault();
+    this.props.prevStep();
+  }
+
   render() {
 
     const classes = useStyles;
@@ -102,7 +107,12 @@ export default class UserNameForm extends Component {
             <Grid item xs={12}>
               <Button variant="contained" color="primary" onClick={this.continue}>
                 Continuar
-                            </Button>
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Button variant="contained" onClick={this.previous}>
+                Volver
+              </Button>
             </Grid>
           </Grid>
         </form>
