@@ -198,7 +198,7 @@ class CardVersionForm extends PureComponent {
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button variant="contained" color="secondary" onClick={this.previous}>
+                            <Button  onClick={this.previous}>
                                 volver
                             </Button>
                         </Grid>

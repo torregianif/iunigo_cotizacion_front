@@ -3,6 +3,7 @@ import { Container, Button, Grid, FormControl, Select, InputLabel, TextField } f
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
 import endpoint from '../constants/endpoint';
+import logo from '../img/JonathanLeibiusky.jpg';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -95,8 +96,11 @@ class CarYearBrandModelForm extends PureComponent {
 
   render() {
 
-    const { values, handleChange } = this.props;
+    const { values, handleChange} = this.props;
     const { miStep } = this.state;
+    
+    console.log('name')
+    const { name } = this.props.values;
 
 
     const classes = useStyles;
@@ -123,6 +127,16 @@ class CarYearBrandModelForm extends PureComponent {
       case 1:
         return (
           <Container maxWidth="sm" className={classes.container}>
+              <Grid container justify="center" alignItems="center">
+                 <img src={logo} alt="logo" style={{
+                margin:10,width:100,height: 100,borderRadius: 50,
+
+                 }}>
+
+                 </img>
+              </Grid>
+              <h3>Un Gusto {name}!</h3>
+              <h4>Hablemos del Auto, Año Marca y Modelo</h4>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -145,9 +159,14 @@ class CarYearBrandModelForm extends PureComponent {
                   </TextField>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button onClick={this.continue}>
-                    Continue
-                            </Button>
+                  <Button  variant="contained" color="primary" onClick={this.continue}>
+                    Continuar
+                  </Button>
+                  <Grid item xs={12}>
+                  <Button onClick={this.previous}>
+                    Volver
+                  </Button>
+                </Grid>
                 </Grid>
               </Grid>
             </form>
@@ -157,6 +176,16 @@ class CarYearBrandModelForm extends PureComponent {
       case 2:
         return (
           <Container maxWidth="sm" className={classes.container}>
+             <Grid container justify="center" alignItems="center">
+                 <img src={logo} alt="logo" style={{
+                margin:10,width:100,height: 100,borderRadius: 50,
+
+                 }}>
+
+                 </img>
+              </Grid>
+              <h3>Un Gusto {name}!</h3>
+              <h4>Hablemos del Auto, Año Marca y Modelo</h4>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -199,9 +228,14 @@ class CarYearBrandModelForm extends PureComponent {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Button onClick={this.continue}>
-                    Continue
+                  <Button  variant="contained" color="primary" onClick={this.continue}>
+                    Continuar
                     </Button>
+                    <Grid item xs={12}>
+                  <Button onClick={this.previous}>
+                    Volver
+                  </Button>
+                </Grid>
                 </Grid>
               </Grid>
             </form>
@@ -211,6 +245,15 @@ class CarYearBrandModelForm extends PureComponent {
       case 3:
         return (
           <Container maxWidth="sm" className={classes.container}>
+              <Grid container justify="center" alignItems="center">
+                 <img src={logo} alt="logo" style={{
+                margin:10,width:100,height: 100,borderRadius: 50,
+                 }}>
+
+                 </img>
+              </Grid>
+              <h3>Un Gusto {name}!</h3>
+              <h4>Hablemos del Auto, Año Marca y Modelo</h4>
             <form className={classes.form} noValidate>
               <Grid container spacing={2}>
                 <Grid item xs={12}>
@@ -272,9 +315,14 @@ class CarYearBrandModelForm extends PureComponent {
                   </TextField>
                 </Grid>
                 <Grid item xs={12}>
-                  <Button onClick={this.continue}>
-                    Continue
-                              </Button>
+                  <Button  variant="contained" color="primary" onClick={this.continue}>
+                    Continuar
+                  </Button>
+                </Grid>
+                <Grid item xs={12}>
+                  <Button onClick={this.previous}>
+                    Volver
+                  </Button>
                 </Grid>
               </Grid>
             </form>

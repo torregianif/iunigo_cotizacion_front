@@ -19,7 +19,7 @@ class PricesForm extends Component {
             car_year: this.props.carYear,
             gnc: this.props.carGNC,
             okm: false,
-            person_age: this.props.person_age,
+            person_age: this.props.age,
             state_code: "ar-b",
             zone: "12"
         }
