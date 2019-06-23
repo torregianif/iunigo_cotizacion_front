@@ -16,31 +16,42 @@ class PricesForm extends Component {
 
         let data = { 
             car_id: "460823",
-            car_year: this.props.carYear,
-            gnc: this.props.carGNC,
+            car_year: 2019,
+            gnc: false,
             okm: false,
-            person_age: this.props.,
+            person_age: 24,
             state_code: "ar-b",
             zone: "12"
         }
 
+        // let data = { 
+        //     car_id: "460823",
+        //     car_year: this.props.carYear,
+        //     gnc: this.props.carGNC,
+        //     okm: false,
+        //     person_age: this.props.age,
+        //     state_code: "ar-b",
+        //     zone: "12"
+        // }
+
         const endpoint_back = `${endpoint.url_precios}`;
 
-          fetch(endpoint_back,
-              {
-                  method: 'POST',
-                  body: JSON.stringify(data),
-                  headers:{
-                      'Content-Type': 'application/json'
-                  }
-              }
-          ).then(
-            (response) => {
-                return response.json();
+        fetch(endpoint_back,
+            {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers:{
+                    'Content-Type': 'application/json'
+                }
             }
+        ).then(
+        (response) => {
+            return response.json();
+        }
         ).then(responseDataBack => {
             const results = responseDataBack.packages;
             var plans = [];
+            console.log(results);
 
             results.forEach( (plan) => {
                 const planDetails = <PricesCards plan={plan}/>
@@ -55,6 +66,7 @@ class PricesForm extends Component {
             <Container >
                 <Grid container spacing={3}>
                     {this.state.plans}
+                    <PricesCards customizable={1}/>
                 </Grid>
             </Container>
         );

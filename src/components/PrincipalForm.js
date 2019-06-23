@@ -9,7 +9,7 @@ import CardVersionForm from './CarVersionForm';
 class PrincipalForm extends Component {
 
     state = {
-        step: 1,
+        step: 6,
         carYear: null,
         carBrand: null,
         carModel: null,
