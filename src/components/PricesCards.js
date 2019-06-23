@@ -43,7 +43,7 @@ export default class PricesCards extends Component {
                     <Card style={{ width: '18rem' }}>
                     <Card.Body style={{minHeight:"200px"}}>
                         <Card.Title>iúnigo<b style={{textTransform: "uppercase"}}>CUSTOM</b></Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted"><b>${this.state.price.toFixed(2)}</b></Card.Subtitle>
+                        <Card.Subtitle className="mb-2"><b>${this.state.price.toFixed(2)}</b></Card.Subtitle>
                         <Card.Text>
                         <b>Plan Customizable</b>
                         </Card.Text>
@@ -68,10 +68,10 @@ export default class PricesCards extends Component {
         else{
             return (
                 <Grid item xs={3}>
-                    <Card style={{ width: '18rem' }}>
-                    <Card.Body style={{background:"#409",minHeight:"200px",color:"white"}}>
+                    <Card style={{ width: '18rem',border:"1px solid #409" }}>
+                    <Card.Body style={{minHeight:"200px"}}>
                         <Card.Title>iúnigo<b style={{textTransform: "uppercase"}}>{this.props.plan.name}</b></Card.Title>
-                        <Card.Subtitle className="mb-2 text-white"><b>${this.props.plan.price.toFixed(2)}</b></Card.Subtitle>
+                        <Card.Subtitle className="mb-2"><b>${this.props.plan.price.toFixed(2)}</b></Card.Subtitle>
                         <Card.Text>
                         <b>{this.props.plan.description}</b>
                         </Card.Text>
