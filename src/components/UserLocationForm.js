@@ -97,13 +97,13 @@ class UserLocationForm extends PureComponent {
                             </TextField>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.previous}>
-                                Volver
+                            <Button onClick={this.continue}>
+                                Continuar
                             </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={this.continue}>
-                                Continuar
+                            <Button onClick={this.previous}>
+                                Volver
                             </Button>
                         </Grid>
                     </Grid>
