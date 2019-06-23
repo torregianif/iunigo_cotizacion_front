@@ -3,15 +3,13 @@ import { Container, Grid, TextField, Button, FormHelperText } from '@material-ui
 
 export default class CarPatentForm extends Component {
 
-    constructor(props){
-        super(props);
-        console.log(props)
-    }
-
     continue = e => {
-        console.log("Entro")
         e.preventDefault();
         this.props.nextStep();
+    }
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
     }
 
     render() {
@@ -42,6 +40,11 @@ export default class CarPatentForm extends Component {
                             Continuar
                         </Button>
                     </Grid>
+                    <Grid item xs={12}>
+                            <Button onClick={this.previous}>
+                                Volver
+                            </Button>
+                        </Grid>
                 </Grid>
             </Container>
         )
