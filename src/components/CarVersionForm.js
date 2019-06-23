@@ -21,12 +21,12 @@ const useStyles = makeStyles(theme => ({
 
 
 
-class CardVersionForm extends PureComponent {
+class CarVersionForm extends PureComponent {
 
     changeMiStep = (input, handleChangeFromChild) => e => {
 
         const doors = e.target.value;
-        console.log(doors)
+        
         const { carYear, carBrand, carModel, car0km } = this.props.values
         const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}&door=${doors}`;
         fetch(endpoint_back, {
@@ -51,8 +51,10 @@ class CardVersionForm extends PureComponent {
     continue = e => {
         e.preventDefault();
         if (this.props.values.carDoors > 0 && this.props.values.carGNC < 9) {
+            
             const { carYear, carBrand, carModel, car0km, carDoors, carVersion } = this.props.values
-            const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=${car0km}&door=${carDoors}&version=${carVersion}`;
+            const endpoint_back = `${endpoint.url}?brand=${carBrand}&model=${carModel}&year=${carYear}&okm=false&door=${carDoors}&version=${carVersion}`;
+            console.log(endpoint_back)
             fetch(endpoint_back, {
                 method: 'GET',
                 headers: {
@@ -210,4 +212,4 @@ class CardVersionForm extends PureComponent {
     }
 }
 
-export default CardVersionForm;
+export default CarVersionForm;

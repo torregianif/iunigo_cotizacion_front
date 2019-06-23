@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from 'react-bootstrap';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Button } from '@material-ui/core';
 import PricesCards from './PricesCards';
 import endpoint from '../constants/endpoint';
 
@@ -8,8 +7,15 @@ class PricesForm extends Component {
     constructor(props){
         super(props);
         this.state = {
-            plans: null
+            plans: null,
+            allProducts:[],
+            maxPrice: null
         }
+    }
+
+    previous = e => {
+        e.preventDefault();
+        this.props.prevStep();
     }
 
     componentDidMount(){
@@ -54,19 +60,30 @@ class PricesForm extends Component {
             console.log(results);
 
             results.forEach( (plan) => {
-                const planDetails = <PricesCards plan={plan}/>
+                const planDetails = <PricesCards plan={plan} nextStep={this.props.nextStep}/>
                 plans.push(planDetails);
+                if(plan.name === "full"){
+                    console.log(plan.price)
+                    this.setState({
+                        allProducts: plan.products,
+                        maxPrice: plan.price
+                    })
+                }
             })  
             this.setState({plans: plans})
         });
     }
 
     render() {
+
+        console.log(this.props.values.carVersion)
+
         return (
-            <Container >
-                <Grid container spacing={3}>
+            <Container style={{marginTop:10}}>
+                <Button onClick={this.previous}>Volver</Button>
+                <Grid container spacing={3} style={{marginTop:5}}>
                     {this.state.plans}
-                    <PricesCards customizable={1}/>
+                    <PricesCards customizable={1} products={this.state.allProducts} maxPrice={this.state.maxPrice} nextStep={this.props.nextStep}/>
                 </Grid>
             </Container>
         );

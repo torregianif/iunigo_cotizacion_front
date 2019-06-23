@@ -37,7 +37,7 @@ export default class UserNameForm extends Component {
   render() {
 
     const classes = useStyles;
-    const { handleChange } = this.props
+    const { handleChange, values } = this.props
 
     return (
 
@@ -71,6 +71,7 @@ export default class UserNameForm extends Component {
                   label="Nombre"
                   margin="normal"
                   onChange={handleChange('name')}
+                  value={values.name}
                 />
               </Grid>
               <Grid style={{ width: "100%" }}>
@@ -80,6 +81,7 @@ export default class UserNameForm extends Component {
                   label="Apellido"
                   margin="normal"
                   onChange={handleChange('lastName')}
+                  value={values.lastName}
                 />
               </Grid>
               <Grid style={{ width: "100%" }}>
@@ -90,6 +92,7 @@ export default class UserNameForm extends Component {
                   type="number"
                   margin="normal"
                   onChange={handleChange('age')}
+                  value={values.age}
                 />
               </Grid>
 
