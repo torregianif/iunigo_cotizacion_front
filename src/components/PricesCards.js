@@ -41,7 +41,7 @@ export default class PricesCards extends Component {
             return (
                 <Grid item xs={3}>
                     <Card style={{ width: '18rem' }}>
-                    <Card.Body style={{background:"#409",minHeight:"200px"}}>
+                    <Card.Body style={{minHeight:"200px"}}>
                         <Card.Title>iúnigo<b style={{textTransform: "uppercase"}}>CUSTOM</b></Card.Title>
                         <Card.Subtitle className="mb-2 text-muted"><b>${this.state.price.toFixed(2)}</b></Card.Subtitle>
                         <Card.Text>
